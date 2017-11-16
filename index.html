@@ -2,22 +2,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript">
-var utag_data = {
-}
-</script>
-
-<!-- Loading script asynchronously -->
-<script type="text/javascript">
-    (function(a,b,c,d){
-    a='//tags.tiqcdn.com/utag/branch/main/prod/utag.js';
-    b=document;c='script';d=b.createElement(c);d.src=a;d.type='text/java'+c;d.async=true;
-    a=b.getElementsByTagName(c)[0];a.parentNode.insertBefore(d,a);
-    })();
-</script>
 </head>
 <title>Pizzeria</title>
-<meta charset="UTF-8">
+<meta charset="UTF-8">s
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
@@ -33,7 +20,29 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
 }
 </style>
 <body>
+<script>
+    // load Branch
+    (function(b,r,a,n,c,h,_,s,d,k){
 
+      if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);
+        d=r.createElement(a);d.async=1;
+        d.src="https://cdn.branch.io/branch-latest.min.js";
+        k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})
+    (window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener applyCode autoAppIndex banner closeBanner closeJourney creditHistory credits data deepview deepviewCta first getCode init link logout redeem referrals removeListener sendSMS setBranchViewData setIdentity track validateCode trackCommerceEvent".split(" "), 0);
+    // init Branch
+    
+
+    branch.init('key_live_bhqNplYbH4x9rJzyZ8E94ppdwwj7B9Rw');
+
+    branch.setBranchViewData({
+    data: {
+        '$deeplink_path': 'picture/12345',
+        'picture_id': '12345',
+        'user_id': '45123'
+    }
+    });
+
+  </script>
 <!-- Navbar (sit on top) -->
 <div class="w3-top w3-hide-small">
   <div class="w3-bar w3-xlarge w3-black w3-opacity w3-hover-opacity-off" id="myNavbar">
