@@ -32,10 +32,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
     // init Branch
     
 
-    branch.init('key_live_bhqNplYbH4x9rJzyZ8E94ppdwwj7B9Rw',{
-        'make_new_link' : true
-    });
 
+    var options = { make_new_link: true };
+    branch.init('key_live_bhqNplYbH4x9rJzyZ8E94ppdwwj7B9Rw', options, function(err, data) {
     branch.setBranchViewData({
     data: {
         '$deeplink_path': 'picture/12345',
@@ -43,6 +42,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
         'user_id': '45123'
     }
     });
+    });
+
+    
 
   </script>
 <!-- Navbar (sit on top) -->
