@@ -2,7 +2,6 @@
 <head><link rel="canonical" href="https://www.canva.com/app" /></head>
 <header><title>This is title</title></header>
 <body>
-Send SMS
         <form onsubmit="sendSMS(this); return false;">
             <input id="phone" name="phone" type="tel" placeholder="(650) 123-4567" />
             <br/>
@@ -19,6 +18,7 @@ Send SMS
         console.log('Setting Identity');
         var d = new Date();
         var t= d.getTime();
+        console.log('Setting Identity '+t);
         branch.setIdentity('Test '+t); 
     })
     
@@ -28,6 +28,11 @@ Send SMS
         branch.logout(function(err, data) {
         console.log(err, data);
         });
+    }
+
+    function setIdentity()
+    {
+        branch.setIdentity('Test '+t);
     }
 
     function sendSMS(form)
