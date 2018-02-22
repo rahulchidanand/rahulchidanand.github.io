@@ -19,7 +19,10 @@
         var d = new Date();
         var t= d.getTime();
         console.log('Setting Identity '+t);
-        branch.setIdentity('Test '+t); 
+        //branch.setIdentity('Test '+t); 
+
+        branch.track('View AB Test Page', { metadata: 'View Page A' });
+
     })
     
     
