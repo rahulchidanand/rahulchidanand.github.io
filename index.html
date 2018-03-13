@@ -1,5 +1,5 @@
 <html>
-<head><link rel="canonical" href="https://www.canva.com/app" /></head>
+<head></head>
 <header><title>This is title</title></header>
 <body>
         <form onsubmit="sendSMS(this); return false;">
@@ -15,23 +15,10 @@
     //branch.init('key_live_bhqNplYbH4x9rJzyZ8E94ppdwwj7B9Rw');
 
     branch.init('key_live_noCT7o42pUldacDYaR3VzbjessdvkuTI', function(err, data) {
-        console.log('Setting Identity');
-        var d = new Date();
-        var t= d.getTime();
-        console.log('Setting Identity '+t);
-        //branch.setIdentity('Test '+t); 
-
-        branch.track('View AB Test Page', { metadata: 'View Page A' });
-
-    })
+        
+        console.log(data);
+    });
     
-    
-    function onOnload()
-    {
-        branch.logout(function(err, data) {
-        console.log(err, data);
-        });
-    }
 
     function setIdentity()
     {
