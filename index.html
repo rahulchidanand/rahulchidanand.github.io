@@ -128,11 +128,16 @@
       console.log("Margin top:::" + tMarginBody);
       precontent.style.paddingTop = tMarginBody;
 
-       document.getElementById("branch-banner").addEventListener("click", function()
+
+       var branchFrame = document.getElementById('branch-banner-iframe');
+       var doc = branchFrame.contentDocument? branchFrame.contentDocument: branchFrame.contentWindow.document;
+
+          var description = doc.getElementById('branch-banner').addEventListener("click", function()
         {
               console.log("clicked banner");
              
         });
+
 
     }
     var listener2 = function(event, data) {
