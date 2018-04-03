@@ -9,9 +9,9 @@
 
     branch.init('key_live_amAKfW7aDLFp8CsA7oY7geoewxnTBPGi', function(err, data) {
         // callback to handle err or dat
-
+        console.log(data);
 // Specify an event to listen for
-        branch.addListener('didShowJourney', listener);
+       // branch.addListener('didShowJourney', listener);
 
 
     });
@@ -121,6 +121,9 @@
   <h1>Hello!</h1>
   <script>
     var listenerMargin = function(event, data) {
+
+
+      console.log(data);
 
       var precontent = document.getElementById("pre-content-container");
       var body = document.getElementsByTagName("html")[0];
