@@ -15,9 +15,9 @@
   	  branch.addListener('willShowJourney',  function() 
      {
 		        console.log("!!!BRANCH EVENT - dismissedJourney!!!");
-	         indow.branch.logEvent('dismissedJourney',{ metadata: 'Metadata' },function(err){console.log(err);});
+	         	branch.logEvent('dismissedJourney',{ metadata: 'Metadata' },function(err){console.log(err);});
 	    });
-	    window.branch.setBranchViewData({
+	    branch.setBranchViewData({
                    data: {
                             '$deeplink_path': window.location.pathname + window.location.search
                          }
