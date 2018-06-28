@@ -15,7 +15,7 @@
   	  branch.addListener('didClickJourneyClose',  function() 
      {
 		        console.log("!!!BRANCH EVENT - dismissedJourney!!!");
-		  	branch.track('dismissedJourney');
+		  	branch.track('dismissedJourneyTrack');
 	         	branch.logEvent('dismissedJourney',{ metadata: 'Metadata' },function(err){console.log(err);});
 	    });
 	    branch.setBranchViewData({
