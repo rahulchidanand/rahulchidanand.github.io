@@ -23,9 +23,18 @@
 <body>
   <h1>Hello, AMP world!</h1>
 
-<amp-list tabindex=0 role="" on="tap:branch-amp-journey.hide" id="branch-amp-journey" src="https://cnet.app.link/branch-amp-journeys-pre?branch_key=key_live_flBbOMWueQAW8ImRsRPRukpaBCjAC27H&__aj_cid=CLIENT_ID(_s)&__amp_viewer=VIEWER&__aj_source_url=SOURCE_URL&__aj_canonical_url=CANONICAL_URL&__aj_v=1.0.0" layout=fixed-height height="77px"><template type="amp-mustache" id="journey-template"><a class="close" on="tap:branch-amp-journey.hide"></a><div class="hideme" ></div><amp-iframe class="branch-amp-journey-inner {{do_not_display}}" layout="fixed-height" height="77px" resizable src="https://cnet.app.link/branch-amp-journeys?branch_key=key_live_flBbOMWueQAW8ImRsRPRukpaBCjAC27H&__aj_cid={{__aj_cid}}&__aj_source_url={{__aj_source_url}}&__aj_canonical_url={{__aj_canonical_url}}&_audience_rule_id={{_audience_rule_id}}&_branch_view_id={{_branch_view_id}}&foofoo=bar3&__aj_v=1.0.0&foo=bar2" sandbox="allow-scripts allow-top-navigation allow-same-origin" frameborder="0"><div overflow></div><amp-img layout="fill"
-    src="https://tasty.co/static-assets/img/tasty_main_image.42e6a923006f33052c6872a4743c631b.png"
-    placeholder></amp-img></amp-iframe></template></amp-list>
+<amp-list tabindex="0" role="" on="tap:branch-amp-journey.hide" id="branch-amp-journey" src="https://cnet.app.link/branch-amp-journeys-pre?branch_key=key_live_flBbOMWueQAW8ImRsRPRukpaBCjAC27H&amp;_aj_cid=CLIENT_ID(_s)&amp;amp_viewer=VIEWER&amp;aj_source_url=SOURCE_URL&amp;aj_canonical_url=CANONICAL_URL&amp;aj_v=1.0.0" layout="fixed-height" height="77px">
+	<template type="amp-mustache" id="journey-template">
+		<a class="close" on="tap:branch-amp-journey.hide"></a>
+		<div class="hideme"></div>
+		<amp-iframe layout="fixed-height" height="77px" src="https://cnet.app.link/branch-amp-journeys?branch_key=key_live_flBbOMWueQAW8ImRsRPRukpaBCjAC27H&amp;aj_cid=aj_cid&amp;aj_source_url=aj_source_url&amp;aj_canonical_url=aj_canonical_url&amp;_audience_rule_id=_audience_rule_id&amp;_branch_view_id=_branch_view_id&amp;_aj_v=1.0.0" sandbox="allow-scripts allow-top-navigation allow-same-origin" frameborder="0">
+			<div overflow="overflow"></div>
+			<amp-img layout="fill" src="&lt;Empty%20Image%20Source&gt;" placeholder="" class="i-amphtml-element i-amphtml-layout-fill i-amphtml-layout-size-defined i-amphtml-layout amp-hidden">
+				<amp-img decoding="async" src="Empty%20Image%20Source" class="i-amphtml-fill-content i-amphtml-replaced-content"></amp-img>
+			</amp-img>
+		</amp-iframe>
+	</template>
+</amp-list>
 
 </body>
 </html>
