@@ -11,8 +11,85 @@
       branch.init('key_live_bhqNplYbH4x9rJzyZ8E94ppdwwj7B9Rw');
       var listener = function(event, data) { console.log(data.journey_link_data.campaign); branch.logEvent('BRANCH_CLOSE_JOURNEY',{ 'journey_campaign': data.journey_link_data.campaign}); }
       branch.addListener('didClickJourneyClose',listener);
+      branch.setIdentity('rahul_123');
+
+      function myFunction() {
+       var event_and_custom_data = {
+       "transaction_id": "tras_Id_1232343434",
+       "currency": "USD",
+       "revenue": 180.2,
+       "shipping": 10.5,
+       "tax": 13.5,
+       "coupon": "promo-1234",
+       "affiliation": "high_fi",
+       "description": "Preferred purchase",
+       "purchase_loc": "Palo Alto",
+      };
+
+ var content_items = [
+     {
+         "$content_schema": "COMMERCE_PRODUCT",
+         "$og_title": "Nike Shoe",
+         "$og_description": "Start loving your steps",
+         "$og_image_url": "http://example.com/img1.jpg",
+         "$canonical_identifier": "nike/1234",
+         "$publicly_indexable": false,
+         "$price": 101.2,
+         "$locally_indexable": true,
+         "$quantity": 1,
+         "$sku": "1101123445",
+         "$product_name": "Runner",
+         "$product_brand": "Nike",
+         "$product_category": "Sporting Goods",
+         "$product_variant": "XL",
+         "$rating_average": 4.2,
+         "$rating_count": 5,
+         "$rating_max": 2.2,
+         "$creation_timestamp": 1499892854966,
+         "$exp_date": 1499892854966,
+         "$keywords": [ "sneakers", "shoes" ],
+         "$address_street": "230 South LaSalle Street",
+         "$address_city": "Chicago",
+         "$address_region": "IL",
+         "$address_country": "US",
+         "$address_postal_code": "60604",
+         "$latitude": 12.07,
+         "$longitude": -97.5,
+         "$image_captions": [ "my_img_caption1", "my_img_caption_2" ],
+         "$condition": "NEW",
+         "$custom_fields": {"foo1":"bar1","foo2":"bar2"}
+   },
+   {
+         "$og_title": "Nike Woolen Sox",
+         "$canonical_identifier": "nike/5324",
+         "$og_description": "Fine combed woolen sox for those who love your foot",
+         "$publicly_indexable": false,
+         "$price": 80.2,
+         "$locally_indexable": true,
+         "$quantity": 5,
+         "$sku": "110112467",
+         "$product_name": "Woolen Sox",
+         "$product_brand": "Nike",
+         "$product_category": "Apparel & Accessories",
+         "$product_variant": "Xl",
+         "$rating_average": 3.3,
+         "$rating_count": 5,
+         "$rating_max": 2.8,
+         "$creation_timestamp": 1499892854966
+   }];
+
+      branch.logEvent(
+         "PURCHASE",
+         event_and_custom_data,
+         content_items,
+         function(err) { console.log(err); }
+      );
+      }
+ 
   </script>
 <body>
- <h1 style="font-size:60px;"><a  href="https://reddit.app.link/?campaign=mweb_xpromo_revamp_v2&amp;utm_name=mweb_xpromo_revamp_v2&amp;channel=xpromo&amp;utm_source=xpromo&amp;feature=mweb&amp;utm_medium=mweb&amp;%24og_redirect=https%3A%2F%2Fwww.reddit.com%2F&amp;%24deeplink_path=%2F&amp;%24android_deeplink_path=reddit%2F&amp;mweb_loid=00000000002dzbzjtw&amp;mweb_loid_created=1539209805545&amp;mweb_user_id36=&amp;mweb_user_name=&amp;domain=www.reddit.com&amp;geoip_country=US&amp;user_agent=Mozilla%2F5.0%20(Linux%3B%20Android%205.0%3B%20SM-G900P%20Build%2FLRX21T)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F68.0.3440.84%20Mobile%20Safari%2F537.36&amp;base_url=%2F&amp;referrer_domain=&amp;referrer_url=&amp;language=&amp;dnt=false&amp;compact_view=true&amp;adblock=false&amp;session_id=WEi6TfCaQOpMbBUEfA&amp;loid=00000000002dzbzjtw&amp;loid_created=1539209805545&amp;reddaid=&amp;keyword=treatment_6&amp;utm_term=treatment_6&amp;tags=snackbar_xpromo_listing&amp;utm_content=snackbar_xpromo_listing">Continue Link</a></h1> 
+ <h1 style="font-size:60px;"><a  href="https://reddit.app.link/?campaign=mweb_xpromo_revamp_v2&amp;utm_name=mweb_xpromo_revamp_v2&amp;channel=xpromo&amp;utm_source=xpromo&amp;feature=mweb&amp;utm_medium=mweb&amp;%24og_redirect=https%3A%2F%2Fwww.reddit.com%2F&amp;%24deeplink_path=%2F&amp;%24android_deeplink_path=reddit%2F&amp;mweb_loid=00000000002dzbzjtw&amp;mweb_loid_created=1539209805545&amp;mweb_user_id36=&amp;mweb_user_name=&amp;domain=www.reddit.com&amp;geoip_country=US&amp;user_agent=Mozilla%2F5.0%20(Linux%3B%20Android%205.0%3B%20SM-G900P%20Build%2FLRX21T)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F68.0.3440.84%20Mobile%20Safari%2F537.36&amp;base_url=%2F&amp;referrer_domain=&amp;referrer_url=&amp;language=&amp;dnt=false&amp;compact_view=true&amp;adblock=false&amp;session_id=WEi6TfCaQOpMbBUEfA&amp;loid=00000000002dzbzjtw&amp;loid_created=1539209805545&amp;reddaid=&amp;keyword=treatment_6&amp;utm_term=treatment_6&amp;tags=snackbar_xpromo_listing&amp;utm_content=snackbar_xpromo_listing">Continue Link</a></h1>
+ <br/>
+ <button onclick="myFunction()">Log Purchase Event</button>
 </body>
 </html>
