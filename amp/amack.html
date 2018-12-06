@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Journey test</title>
+</head>
+<body>
+
+<p>
+<button onclick="addMetaTag()">add meta tag</button>
+</p>
+<p>
+<button  onclick="test()"> get journey</button>
+</p>
+</body>
+
+
+<script type="text/javascript">
+
+    (function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-latest.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener applyCode autoAppIndex banner closeBanner closeJourney creditHistory credits data deepview deepviewCta first getCode init link logout redeem referrals removeListener sendSMS setBranchViewData setIdentity track validateCode trackCommerceEvent logEvent disableTracking getBrowserFingerprintId".split(" "), 0);
+
+    // (jmandarino): this is the live key for my person test app
+    branch.init('key_live_njOiciGe88AFf5y54I1kklbostfXSDB1', function(err, data) {
+        // callback to handle err or data
+    });
+
+
+
+    function addMetaTag(){
+        // set afrobeat as a meta tag
+        var meta = document.createElement('meta');
+        meta.name = "branch:deeplink:genre";
+        meta.content = "afrobeats";
+        document.getElementsByTagName('head')[0].appendChild(meta);
+    }
+
+    function test() {
+
+        // close journey just in case
+        branch.closeJourney();
+        // event name as pageview will show journey
+        branch.track("pageview", function (err, data) {
+            console.log(data);
+            console.log(err);
+        });
+
+    }
+</script>
+</html>
