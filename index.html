@@ -12,6 +12,13 @@
       var listener = function(event, data) { console.log(data.journey_link_data.campaign); branch.logEvent('BRANCH_CLOSE_JOURNEY',{ 'journey_campaign': data.journey_link_data.campaign}); }
       branch.addListener('didClickJourneyClose',listener);
       branch.setIdentity('rahul_123');
+      
+      branch.data(function(err, data) {
+      console.log(err, data); 
+     //  var dataObj = JSON.parse(data);
+      var nextLink = data.referring_link + "&__branch_flow_type=viewapp&$do_not_process=true";
+      console.log("HelloLLL: "+nextLink);
+     });
 
       function myFunction() {
        var event_and_custom_data = {
