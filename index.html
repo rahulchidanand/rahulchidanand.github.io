@@ -15,8 +15,8 @@
       
       branch.data(function(err, data) {
       console.log(err, data); 
-     //  var dataObj = JSON.parse(data);
       var referringLink = data.data_parsed["~referring_link"];
+      console.log(referringLink);
       if(referringLink === null)
       {
        console.log("Pass regular link");
