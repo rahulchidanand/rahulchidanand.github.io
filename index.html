@@ -16,8 +16,16 @@
       branch.data(function(err, data) {
       console.log(err, data); 
      //  var dataObj = JSON.parse(data);
-      var nextLink = data.referring_link + "&__branch_flow_type=viewapp&$do_not_process=true";
-      console.log("HelloLLL: "+nextLink);
+      var referringLink = data.data_parsed["~referring_link"];
+      if(referringLink === null)
+      {
+       console.log("Pass regular link");
+      }
+      else
+      {
+       var embedLink = referringLink + "&__branch_flow_type=viewapp&$do_not_process=true";
+       console.log("Embed Link: "+ embedLink);
+      }
      });
 
       function myFunction() {
