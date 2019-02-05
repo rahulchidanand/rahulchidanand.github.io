@@ -17,7 +17,7 @@
       console.log(err, data); 
       var referringLink = data.data_parsed["~referring_link"];
       console.log(referringLink);
-      if(referringLink === null)
+      if(!referringLink)
       {
        console.log("Pass regular link");
       }
