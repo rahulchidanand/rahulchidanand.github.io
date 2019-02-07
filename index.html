@@ -18,6 +18,8 @@
        alert("Nav: "+navigator.userAgent);
        var referringLink = data.data_parsed["~referring_link"];
       
+       if(document.getElementById("_cdvIframeBridge")){ alert('its an inappbrowser')}else{ alert('its a mobile browser') }
+       
       console.log(referringLink);
       if(!referringLink)
       {
