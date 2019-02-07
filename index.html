@@ -11,11 +11,7 @@
       branch.init('key_live_bhqNplYbH4x9rJzyZ8E94ppdwwj7B9Rw', function(err, data) {
       console.log(err, data); 
      });
-      var listener = function(event, data) { console.log(data.journey_link_data.campaign); branch.logEvent('BRANCH_CLOSE_JOURNEY',{ 'journey_campaign': data.journey_link_data.campaign}); }
-      branch.addListener('didClickJourneyClose',listener);
-      branch.setIdentity('rahul_123');
- 
-      alert(document.referrer);
+      alert("RF: "+document.referrer);
       
       branch.data(function(err, data) {
       console.log(err, data); 
