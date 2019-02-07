@@ -12,6 +12,12 @@
       var listener = function(event, data) { console.log(data.journey_link_data.campaign); branch.logEvent('BRANCH_CLOSE_JOURNEY',{ 'journey_campaign': data.journey_link_data.campaign}); }
       branch.addListener('didClickJourneyClose',listener);
       branch.setIdentity('rahul_123');
+  
+      var req = new XMLHttpRequest();
+      req.open('GET', document.location, false);
+      req.send(null);
+      var headers = req.getAllResponseHeaders().toLowerCase();
+      alert(headers);
       
       branch.data(function(err, data) {
       console.log(err, data); 
