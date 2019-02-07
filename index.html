@@ -15,7 +15,7 @@
       
       branch.data(function(err, data) {
       console.log(err, data); 
-       alert("Z: "+data.data_parsed);
+       alert("Referring Link: "+data.data_parsed["~referring_link"]);
        var referringLink = data.data_parsed["~referring_link"];
       
       console.log(referringLink);
