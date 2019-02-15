@@ -3,6 +3,23 @@
 <head>
  <title>Test Page</title>
  <meta name=“branch:deeplink:o_view” content=“Mobile” />
+ <!-- OG tags -->
+<meta property="fb:app_id" content="109259765770403" />
+<meta property="og:title" content="Santa Clara Basketball tickets, Santa Clara Broncos Basketball tickets on StubHub!" />
+<meta property="og:description" content="Santa Clara Basketball tickets - Buy and sell Santa Clara Basketball tickets and other NCAA Basketball tickets on StubHub! Buy your Santa Clara Broncos Basketball Ticket today." />
+<meta property="og:url" content="https://www.stubhub.com/santa-clara-broncos-basketball-tickets/performer/85615/" />
+<meta property="og:site_name" content="StubHub" />
+<meta property="og:locale" content="en-us" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://cache11.stubhubstatic.com/promotions/scratch/unified/logo_og_image.png" />
+<!-- App Links -->
+<meta property="al:ios:url" content="stubhub://stubhub.com/?performer_id&#x3D;85615&GCID=AppLinks:Performer" />
+<meta property="al:ios:app_store_id" content="366562751" />
+<meta property="al:ios:app_name" content="StubHub" />
+<meta property="al:android:url" content="stubhub://stubhub.com/?performer_id&#x3D;85615&GCID=AppLinks:Performer" />
+<meta property="al:android:package" content="com.stubhub" />
+<meta property="al:android:app_name" content="StubHub" />
+<meta property="branch:deeplink:$deeplink_path" content="stubhub://stubhub.com/?performer_id&#x3D;85615&GCID=AppLinks:Performer" />
  </head>
  <script>
     // load Branch
@@ -11,13 +28,11 @@
       branch.init('key_live_bhqNplYbH4x9rJzyZ8E94ppdwwj7B9Rw', function(err, data) {
       console.log(err, data); 
      });
-      alert("RF: "+document.referrer);
       
       branch.data(function(err, data) {
       console.log(err, data); 
 
       var referringLink = data.data_parsed["~referring_link"];
-      alert("RL: "+referringLink);
       console.log("Data: "+data);
       if(!referringLink)
       {
