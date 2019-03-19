@@ -10,6 +10,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  function myFunction() {
   var x = "User-agent header sent: " + navigator.userAgent;
   document.getElementById("demo").innerHTML = x;
+  
   var userAgent = window.navigator.userAgent.toLowerCase(),
     safari = /safari/.test( userAgent ),
     ios = /iphone|ipod|ipad/.test( userAgent );
@@ -21,6 +22,9 @@ if( ios ) {
         console.log('iOS Webview');
     };
 } else {
+	var req = new XMLHttpRequest();
+	req.open('GET', document.location, false);
+	req.send(null);
     if ("com.branch.webview".equals(req.getHeader("X-Requested-With")) ){
  		console.log('Android Webview');
 } else {
