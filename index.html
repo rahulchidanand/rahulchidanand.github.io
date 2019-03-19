@@ -14,18 +14,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   var userAgent = window.navigator.userAgent.toLowerCase(),
     safari = /safari/.test( userAgent ),
     ios = /iphone|ipod|ipad/.test( userAgent );
-
-if( ios ) {
+    androidWV = /wv/.test(userAgent);
+if( ios ) {	
     if ( safari ) {
         console.log('iOS Browser');
     } else if ( !safari ) {
         console.log('iOS Webview');
     };
 } else {
-	var req = new XMLHttpRequest();
-	req.open('GET', document.location, false);
-	req.send(null);
-    if ("com.branch.webview".equals(req.getHeader("X-Requested-With")) ){
+	
+    if (androidWV) ){
  		console.log('Android Webview');
 } else {
     console.log('Android Browser');
