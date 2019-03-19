@@ -10,6 +10,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  function myFunction() {
   var x = "User-agent header sent: " + navigator.userAgent;
   document.getElementById("demo").innerHTML = x;
+  var userAgent = window.navigator.userAgent.toLowerCase(),
+    safari = /safari/.test( userAgent ),
+    ios = /iphone|ipod|ipad/.test( userAgent );
+
+if( ios ) {
+    if ( safari ) {
+        console.log('iOS Browser');
+    } else if ( !safari ) {
+        console.log('iOS Webview');
+    };
+} else {
+    if ("com.branch.webview".equals(req.getHeader("X-Requested-With")) ){
+ 		console.log('Android Webview');
+} else {
+    console.log('Android Browser');
+}
+}
+  
  }
  </script>
 <!-- End Google Tag Manager -->
