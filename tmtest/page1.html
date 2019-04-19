@@ -13,9 +13,10 @@
   branch.addListener('didCloseJourney', listener);	
   branch.track('pageview'); 
 
-  
+
   function dismiss(){  
-	branch.closeJourney(function(err) { console.log(err); });
+  	window.location.replace("branchsters:");
+	//branch.closeJourney(function(err) { console.log(err); });
   }  
 
 </script>
