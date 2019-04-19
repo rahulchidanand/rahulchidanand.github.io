@@ -11,7 +11,9 @@
 
 // Specify an event to listen for
   branch.addListener('didCloseJourney', listener);	
+  branch.track('pageview'); 
 
+  
   function dismiss(){  
 	branch.closeJourney(function(err) { console.log(err); });
   }  
