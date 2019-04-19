@@ -10,7 +10,7 @@
   var listener = function(event, data) { branch.track('pageview'); }
 
 // Specify an event to listen for
-  branch.addListener('willShowJourney', listener);	
+  branch.addListener('didCloseJourney', listener);	
 
   function dismiss(){  
 	branch.closeJourney(function(err) { console.log(err); });
