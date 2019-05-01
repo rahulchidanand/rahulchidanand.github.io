@@ -8,9 +8,11 @@
   branch.init('key_live_hkDytPACtipny3N9XmnbZlapBDdj4WIL');
 
   var listener = function(event, data) { branch.track('pageview'); }
+  var listener1 = function(event, data) { console.log(data); }
 
 // Specify an event to listen for
-  branch.addListener('didCloseJourney', listener);	
+  branch.addListener('didCloseJourney', listener);
+  branch.addListener('didShowJourney', listener1);
   branch.track('pageview'); 
 
 
