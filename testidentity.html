@@ -11,13 +11,15 @@
 
     function setIdentity(){
         branch.setIdentity('Identity'+Date.now(), function (err, data) {
-            console.log(data)
-            document.getElementById("results").innerHTML = data;
+            document.getElementById("results").innerHTML = JSON.stringify(data);
         });
     }
 
     function logCustomEvent(){
-        branch.logEvent("custom_event",{ metadata: '123' },function(err) { console.log(err); });
+        branch.logEvent("custom_event",{ metadata: '123' },function(err) 
+            { 
+                document.getElementById("results").innerHTML = += '<p>Custom Event custom_event Logged</p>';
+            });
     }
 
   </script>
