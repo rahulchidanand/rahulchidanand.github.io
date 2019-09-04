@@ -18,7 +18,7 @@
     function logCustomEvent(){
         branch.logEvent("custom_event",{ metadata: '123' },function(err) 
             { 
-                document.getElementById("results").innerHTML = += '<p>Custom Event custom_event Logged</p>';
+                document.getElementById("results").innerHTML += '<br> Custom Event custom_event Logged';
             });
     }
 
