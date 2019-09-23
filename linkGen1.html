@@ -29,33 +29,19 @@ TO DO
 
 		function generateLink() {
 			var original_url = window.document.getElementById("originalUrl").value;
-			var campaign = '';
-			var channel = '';
+			var campaign = window.document.getElementById("campaignName").value;
+			var channel = window.document.getElementById("channel").value;
 			var webOnly = window.document.getElementById("webOnlyCheckBox").checked;
+
 			var params = '';
 			var output = '';
 			var jsonData = {};
 			if (original_url == '') {
-				window.document.getElementById("generated3PLink").value = 'Please enter a destination URL.'
+				output = 'Please enter a destination URL.'
 				window.document.getElementById("originalUrl").focus();
 			} else {
 
-				//Check if URL contains ?c=
-				if(original_url.search("c=") == -1)
-				{
-					window.document.getElementById("generated3PLink").value = 'URL missing campaign string ?c=';
-					window.document.getElementById("originalUrl").focus();
-					return;
-				}
 
-				campaign = original_url.substring(original_url.search("c=")+2, original_url.length-1);
-				channel = parseChannel(campaign);
-				if(channel== '')
-				{
-					window.document.getElementById("generated3PLink").value = 'URL missing Channel FB/TWT/IG'
-					window.document.getElementById("originalUrl").focus();
-					return;
-				}
 
 				var table = window.document.getElementById('query_params');
 				for (var i = 0, row; row = table.rows[i]; i++) {
@@ -69,15 +55,12 @@ TO DO
 					jsonData['$web_only'] = 'true';
 				}
 				
-				jsonData['$fallback_url'] = original_url;
-				jsonData['$canonical_url'] = original_url;
-				jsonData['$marketing_title'] = campaign;
+				jsonData['$desktop_url'] = original_url;
 								// Get query parameters and add to params variable
 				var linkData = {
 				  campaign: campaign,
 				  channel: channel,
-				  feature: 'Social',
-				  'type': 2,	
+				  feature: 'linkGen',
 				  data: jsonData
 				};
 
@@ -89,24 +72,7 @@ TO DO
 			}
 			
 		}
-		//Parse Channel from Campaign String
-		function parseChannel(campaign){
-			
-			if (campaign.search("FB") > -1)
-			{
-				return "Facebook";
-			}
-			if (campaign.search("TWT") > -1)
-			{
-				return "Twitter";
-			}
-			if (campaign.search("IG") > -1)
-			{
-				return "Instagram";
-			}
-			return '';
-			
-		}
+
 
 		// Returns current number of query parameter rows
 		function getRowCount() {
