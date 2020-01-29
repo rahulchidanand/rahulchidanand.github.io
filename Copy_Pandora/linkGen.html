@@ -1,0 +1,204 @@
+<!--
+TO DO
+- Add "Share with Org" link that uses deep link data to pre-populate Branch Domain and ESP
+- Add sample .csv input and output files
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Kochava >> Branch Link Converter tool</title>
+	<link rel="icon" href="https://branch.io/img/press/kit/badge-black.png" />
+	<link rel="stylesheet" href="style.css" />
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+	<!-- Script to generate 3P link based on user inputs -->
+	<script>
+
+
+	(function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-latest.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener applyCode autoAppIndex banner closeBanner closeJourney creditHistory credits data deepview deepviewCta first getCode init link logout redeem referrals removeListener sendSMS setBranchViewData setIdentity track validateCode trackCommerceEvent logEvent disableTracking".split(" "), 0);
+    // init Branch
+    branch.init('key_live_cdqENeORqzEmvSycKH35Caiewvj1fnE2');
+
+
+		function generateLink() {
+
+			console.log("Generate Links");
+
+			var kochava_url = window.document.getElementById("kochava_url").value;
+			var webOnly = window.document.getElementById("webOnlyCheckBox").checked;
+			var desktop_url = window.document.getElementById("desktop_url").value;
+			var channel = window.document.getElementById("channelTag").value;
+			//var android_url = window.document.getElementById("android_url").value;
+			//var ios_url = window.document.getElementById("ios_url").value;
+			
+			//console.log('IOS_URL: '+ios_url);
+			
+			console.log('web only '+webOnly);
+
+			var output = 'https://pandora.app.link';
+
+			if (kochava_url == '') {
+				window.document.getElementById("generated3PLink").value = 'Please enter a Kochava Tracking'
+				window.document.getElementById("kochava_url").focus();
+			}
+			else
+			{
+
+
+				if(desktop_url == ''){
+					window.document.getElementById("generated3PLink").value = 'Please enter a Web URL'
+					window.document.getElementById("desktop_url").focus();	
+				}
+				else
+				{
+					var kochava_params = kochava_url.substring(kochava_url.search("\\?"));
+					console.log(kochava_params);
+
+					output = output.concat(kochava_params);
+					console.log(output);
+
+					output = output.concat('&~channel=');
+					if(channel == ''){
+						output = output.concat('Paid_Marketing_Kochava');
+					}
+					else{
+
+						output = output.concat(channel);
+					}
+
+					if(webOnly){
+						output = output.concat('&$fallback_url='+encodeURIComponent(desktop_url));
+					}
+					else{
+						output = output.concat('&$desktop_url='+encodeURIComponent(desktop_url));
+					}
+
+					
+					window.document.getElementById("generated3PLink").value = output;
+				}
+
+			}
+
+			}
+		
+
+		// Returns current number of query parameter rows
+		function getRowCount() {
+			var rowCount = window.document.getElementById('query_params').rows.length;
+
+			return rowCount;
+		}
+
+		// Adds a new row for additional query parameters
+		function addQuerylinkParam() {
+			var newRowIndex = getRowCount() + 1;
+
+			var newRowHTML = `<tr id="row-${newRowIndex}"><td><label style="margin-right:10px">Query Param ${newRowIndex}</label></td><td><input class="form-control" style="width:500px" id="query-key-${newRowIndex}" type="text" placeholder="key ${newRowIndex}"/></td><td><input class="form-control" style="width:500px" id="query-value-${newRowIndex}" type="text" placeholder="value ${newRowIndex}"/></td></tr>`;
+			$("#query_params").append(newRowHTML);
+		}
+
+		function clearFields() {
+		    window.document.getElementById("kochava_url").value = '';
+			window.document.getElementById("webOnlyCheckBox").checked = false;
+			window.document.getElementById("desktop_url").value = '';
+			window.document.getElementById("channelTag").value = '';
+			window.document.getElementById("generated3PLink").value = '';
+		}
+
+		function copyFields() {
+		    var copyText = document.getElementById("generated3PLink");
+  			copyText.select();
+  			copyText.setSelectionRange(0, 99999)
+  			document.execCommand("copy");
+		}
+
+		// Removes a query parameter row
+		function removeQuerylinkParam() {
+			current_row = getRowCount();
+			$(`#row-${current_row}`).remove()
+		}
+
+		function toggleView() {
+			$(".toggle").toggle();
+		}
+	</script>
+</head>
+
+<body class="container">
+	</br>
+	<div>
+		<h1 style="display:inline;">Kochava >> Branch Link Converter tool</h1>
+	</div>
+	<br />
+	<div style="margin-bottom: 40px;">
+		This form supports Pandora marketing campaigns where the click event and deep linking is performed by Branch and attribution is performed by Kochava. 
+	</div>
+	<section class="container" id="link-creation" style="background-color: lightgrey;">
+		
+		<label style="margin-top: 10px; margin-bottom: 20px;"> Required Fields </label>
+
+		<!-- Table for user input -->
+
+		<table style="margin-bottom: 10px;">
+		<tbody>
+        <tr>
+            <td>
+            	<label style="margin-right: 10px">Kochava Tracker</label>
+            	<input class="form-control" style="width:500px;margin-bottom: 15px;" id="kochava_url" type="text"/>
+            </td>
+            <td><div class="help-tip" style="margin-top: 15px;"><p>Please enter the Kochava tracking links with all the necessary tracking macros</p></div></td>
+        </tr>
+        <tr>
+            <td>
+            	<label style="margin-right: 10px">Corresponding Web URL</label>
+            	<input class="form-control" style="width:500px" id="desktop_url" type="text"/>
+            </td>
+            
+            <td><div class="help-tip" style="margin-top: 30px;"><p>Please enter the web URL to where the user would be redirected to</p></div></td>
+        </tr>
+      </tbody>
+		</table>
+	</section>
+		<br/>
+		<!-- Deep linking parameters table -->
+	<div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Optional Fields (for alternative tracking and link behavior)</a>
+        </h4>
+      </div>
+      <div id="collapse3" class="panel-collapse collapse">
+        <div class="panel-body">
+	        <label style="margin-right: 10px">~Channel (Branch specific tag)</label>
+	        <input class="form-control" style="width:200px;margin-bottom: 15px;" id="channelTag" type="text"/>
+
+            <input type="checkbox" name="webonly" id="webOnlyCheckBox"/>
+            <label style="margin-left: 5px">Web Only</label>
+        </div>
+      </div>
+    </div>
+  </div> 
+	<section>
+		<br>
+		<br>
+		<div class="text-center"><button class="form-control toggle" style="float:none; background-color:#d3d3d3;" onclick="generateLink()">Create Link</button></div>
+		<div class="text-center"><button class="form-control toggle" style="float:none; background-color:#d3d3d3; display:none;" onclick="parseFile()">Process CSV</button></div>
+		<br>
+		<br>
+	</section>
+	<section class="container toggle" id="linkOutput">
+		<h3>Generated Email Link
+		<button class="btn" id="copyBtn" style="background-color:#d3d3d3; display:inline;" onclick="copyFields()">Copy Link</button>
+		<button class="btn" id="clrBtn" onclick="clearFields()" style="background-color:#d3d3d3; display:inline;" data-clipboard-target="#generated3PLink">Clear Fields</button>
+		</h3>
+		<textarea class="form-control" style="height:100px; margin-bottom:5%;" id="generated3PLink" type="text"></textarea>
+	</section>
+</body>
+</html>

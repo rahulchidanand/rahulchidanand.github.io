@@ -7,10 +7,83 @@
 
  <meta name=”viewport” content=”width=device-width, initial-scale=1″>
  </head>
+ <script type="text/javascript">
+ 	
+ 	      (function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-latest.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener applyCode autoAppIndex banner closeBanner closeJourney creditHistory credits data deepview deepviewCta first getCode init link logout redeem referrals removeListener sendSMS setBranchViewData setIdentity track validateCode trackCommerceEvent logEvent disableTracking".split(" "), 0);
+    // init Branch
+    branch.init('key_live_bhqNplYbH4x9rJzyZ8E94ppdwwj7B9Rw');
+
+    function logInitiatePurchase(){
+
+    	var event_and_custom_data = { "currency": "USD", "revenue": 180.2};
+    	var customer_event_alias = "customer_initiate_purchase";
+    	var content_items = {};
+
+		branch.logEvent(
+		   "PURCHASE",
+		   event_and_custom_data,
+		   content_items,
+		   customer_event_alias,
+		   function(err) { console.log(err); }
+		);
+    }
+
+    function logViewCart(){
+
+    	var event_and_custom_data = { "currency": "USD", "revenue": 110};
+    	var customer_event_alias = "customer_view_cart";
+    	var content_items = {};
+
+		branch.logEvent(
+		   "PURCHASE",
+		   event_and_custom_data,
+		   content_items,
+		   customer_event_alias,
+		   function(err) { console.log(err); }
+		);
+    }
+
+
+    function link() {
+  		var linkData = {
+  		campaign: 'content 123',
+  		tags: [ 'tag1', 'tag2', 'tag3' ],
+		data: {
+		    '$desktop_url':'https://www.pandora.com/artist/cardi-b/bodak-yellow-single-explicit/bodak-yellow/TR4Z3brPpP2gPJJ?test=1'
+
+		  }
+		};
+
+	branch.link(linkData, function(err, link) {
+	  console.log(link);	
+	  console.log(err);
+	});   
+	}
+
+	function subscribe() {
+  		var event_and_custom_data = { "currency": "USD", "revenue": 110};
+    	var customer_event_alias = "SUBSCRIBE";
+    	var content_items = {};
+
+		branch.logEvent(
+		   "SUBSCRIBE",
+		   event_and_custom_data,
+		   content_items,
+		   customer_event_alias,
+		   function(err) { console.log(err); }
+		);
+	}
+
+ </script>
 <body>
 <h1>Link to Page 2</h1>
 <a href="https://jnthns.app.link/EKczWLk08Z">Page 2</a>
 
-<button type="button" onclick="dismiss()">Click Me!</button>
+<button type="button" onclick="link()">Click Me!</button>
+<button type="button" onclick="logInitiatePurchase()">Initiate Purchase</button>
+<button type="button" onclick="logViewCart()">View Cart</button>
+<button type="button" onclick="subscribe()">Subscribe</button>
+
 
 </body>
+	

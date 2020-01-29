@@ -1,0 +1,43 @@
+{
+  "event_datasource": [
+    "CLICK"
+  ],
+  "webhook_source": "DASHBOARD",
+  "filter": "*:* AND NOT user_data.os:\"ANDROID\" AND last_attributed_touch_data.campaign_id?has_content",
+  "schema_version": null,
+  "managed": false,
+  "archived": false,
+  "payload_url": "",
+  "payload_data": {
+    "url_template": "https://requestbin.net/r/qcg3zwqc",
+    "method": "POST",
+    "body_template": "<@eventmap></@eventmap>"
+  }
+}
+
+
+
+{
+  "event_datasource": [
+    "CLICK"
+  ],
+  "webhook_source": "DASHBOARD",
+  "filter": "*:* AND NOT user_data.os:\"ANDROID\" AND last_attributed_touch_data.campaign_id:*",
+  "schema_version": null,
+  "managed": false,
+  "archived": false,
+  "payload_url": "",
+  "payload_data": {
+    "url_template": "https://requestbin.net/r/qcg3zwqc",
+    "method": "POST",
+    "body_template": "<@eventmap></@eventmap>"
+  }
+}
+
+curl -X PUT --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"event_datasource":["CLICK"],"webhook_source":"DASHBOARD","filter":"*:* AND NOT user_data.os:\"ANDROID\"","id":723962160975205146, "schema_version":null,"managed":false,"archived":false,"payload_url":"","payload_data":{"url_template":"https://requestbin.net/r/qcg3zwqc","method":"POST","body_template":"<@eventmap></@eventmap>"}}' 'http://webhook2.prod.branch.io/v1/webhook2/435924912524252025'
+
+
+{"event_datasource":["CLICK"],"webhook_source":"DASHBOARD","filter":"*:* AND NOT user_data.os:\"ANDROID\" AND last_attributed_touch_data.campaign_id?has_content","id":723962160975205146, "schema_version":null,"managed":false,"archived":false,"payload_url":"","payload_data":{"url_template":"https://requestbin.net/r/qcg3zwqc","method":"POST","body_template":"<@eventmap></@eventmap>"}}
+
+
+curl -A "Mozilla/5.0 (Linux; Android 6.0; Nexus 5X Build/MDA89E) AppleWebKit/537.36 (KHTML, like Gecko) Mobile Safari/537.36" -H "X-Forwarded-Proto: https" "https://rahulchidanand.app.link/46EdsJthC1?campaign_id=test"

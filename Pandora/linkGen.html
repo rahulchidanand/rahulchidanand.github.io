@@ -7,21 +7,21 @@ TO DO
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Branch Links Generator</title>
+	<title>Kochava >> Branch Link Converter tool</title>
 	<link rel="icon" href="https://branch.io/img/press/kit/badge-black.png" />
 	<link rel="stylesheet" href="style.css" />
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 	<!-- Script to generate 3P link based on user inputs -->
 	<script>
+
+
 	(function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-latest.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener applyCode autoAppIndex banner closeBanner closeJourney creditHistory credits data deepview deepviewCta first getCode init link logout redeem referrals removeListener sendSMS setBranchViewData setIdentity track validateCode trackCommerceEvent logEvent disableTracking".split(" "), 0);
     // init Branch
     branch.init('key_live_cdqENeORqzEmvSycKH35Caiewvj1fnE2');
@@ -34,12 +34,18 @@ TO DO
 			var kochava_url = window.document.getElementById("kochava_url").value;
 			var webOnly = window.document.getElementById("webOnlyCheckBox").checked;
 			var desktop_url = window.document.getElementById("desktop_url").value;
-			var android_url = window.document.getElementById("android_url").value;
-			var ios_url = window.document.getElementById("ios_url").value;
+			var channel = window.document.getElementById("channelTag").value;
+			//var android_url = window.document.getElementById("android_url").value;
+			//var ios_url = window.document.getElementById("ios_url").value;
 			
-			console.log('IOS_URL: '+ios_url);
-			 
+			//console.log('IOS_URL: '+ios_url);
+			
+			console.log('web only '+webOnly);
 			var output = 'https://pandora.app.link';
+			if(webOnly){
+						output = output.concat('/e/');
+			}
+			
 
 			if (kochava_url == '') {
 				window.document.getElementById("generated3PLink").value = 'Please enter a Kochava Tracking'
@@ -47,6 +53,8 @@ TO DO
 			}
 			else
 			{
+
+
 				if(desktop_url == ''){
 					window.document.getElementById("generated3PLink").value = 'Please enter a Web URL'
 					window.document.getElementById("desktop_url").focus();	
@@ -59,7 +67,23 @@ TO DO
 					output = output.concat(kochava_params);
 					console.log(output);
 
-					output = output.concat('&$desktop_url='+encodeURIComponent(desktop_url));
+					output = output.concat('&~channel=');
+					if(channel == ''){
+						output = output.concat('Paid_Marketing_Kochava');
+					}
+					else{
+
+						output = output.concat(channel);
+					}
+
+					if(webOnly){
+						output = output.concat('&$fallback_url='+encodeURIComponent(desktop_url));
+					}
+					else{
+						output = output.concat('&$desktop_url='+encodeURIComponent(desktop_url));
+					}
+
+					
 					window.document.getElementById("generated3PLink").value = output;
 				}
 
@@ -83,6 +107,21 @@ TO DO
 			$("#query_params").append(newRowHTML);
 		}
 
+		function clearFields() {
+		    window.document.getElementById("kochava_url").value = '';
+			window.document.getElementById("webOnlyCheckBox").checked = false;
+			window.document.getElementById("desktop_url").value = '';
+			window.document.getElementById("channelTag").value = '';
+			window.document.getElementById("generated3PLink").value = '';
+		}
+
+		function copyFields() {
+		    var copyText = document.getElementById("generated3PLink");
+  			copyText.select();
+  			copyText.setSelectionRange(0, 99999)
+  			document.execCommand("copy");
+		}
+
 		// Removes a query parameter row
 		function removeQuerylinkParam() {
 			current_row = getRowCount();
@@ -98,54 +137,57 @@ TO DO
 <body class="container">
 	</br>
 	<div>
-		<h1 style="display:inline;">    Branch Links Generator</h1>
+		<h1 style="display:inline;">Kochava >> Branch Link Converter tool</h1>
 	</div>
 	<br />
-	<section class="container" id="link-creation">
+	<div style="margin-bottom: 40px;">
+		This form supports Pandora marketing campaigns where the click event and deep linking is performed by Branch and attribution is performed by Kochava. 
+	</div>
+	<section class="container" id="link-creation" style="background-color: lightgrey;">
+		
+		<label style="margin-top: 10px; margin-bottom: 20px;"> Required Fields </label>
+
 		<!-- Table for user input -->
-		<table>
-			<tbody>
-        <tr class="toggle">
-            <td><label style="margin-right: 10px">Kochava Tracker</label></td>
-            <td><input class="form-control" style="width:500px" id="kochava_url" type="text"/></td>
-            <td><div class="help-tip"><p>Please enter the Kochava tracking links with all the necessary tracking macros</p></div></td>
+
+		<table style="margin-bottom: 10px;">
+		<tbody>
+        <tr>
+            <td>
+            	<label style="margin-right: 10px">Kochava Tracker</label>
+            	<input class="form-control" style="width:500px;margin-bottom: 15px;" id="kochava_url" type="text"/>
+            </td>
+            <td><div class="help-tip" style="margin-top: 15px;"><p>Please enter the Kochava tracking links with all the necessary tracking macros</p></div></td>
         </tr>
         <tr>
-            <td><label style="margin-right: 10px">Corresponding Web URL</label></td>
-            <td><input class="form-control" style="width:500px" id="desktop_url" type="text"/></td>
-            <td><div class="help-tip"><p>Please enter the web URL to where the user would be redirected to</p></div></td>
+            <td>
+            	<label style="margin-right: 10px">Corresponding Web URL</label>
+            	<input class="form-control" style="width:500px" id="desktop_url" type="text"/>
+            </td>
+            
+            <td><div class="help-tip" style="margin-top: 30px;"><p>Please enter the web URL to where the user would be redirected to</p></div></td>
         </tr>
-        <tr >
-            <td><label style="margin-right: 10px">Web Only</label></td>
-            <td><input type="checkbox" name="webonly" id="webOnlyCheckBox"/></td>
-            <td><div class="help-tip"><p>This flag forces the link to redirect to mWeb regardless of whether the user has the app installed</p></div></td>
-        </tr>
-				<tr class="toggle" style="display:none;">
-					<td><label style="margin-right: 10px">File Upload</label></td>
-					<td><input  type="file" id="files"></td>
-				</tr>
-
       </tbody>
 		</table>
-		<br/>
-		<h3 class="toggle">Add Query Parameters</h3>
-
-		<!-- Deep linking parameters table -->
-		<table id="query_params" class="toggle">
-			<tr id="row-1">
-          <td><label style="margin-right: 10px">$ios_url</label></td>
-          <td><input class="form-control" style="width:500px" id="ios_url" type="text" /></td>
-          <td><div class="help-tip"><p>This flag determines the redirect if an iOS user does not have the app installed. Please input a web url here.</p></div></td>
-      </tr>
-      <tr id="row-2">
-          <td><label style="margin-right: 10px">$android_url</label></td>
-          <td><input class="form-control" style="width:500px" id="android_url" type="text" /></td>
-          <td><div class="help-tip"><p>This flag determines the redirect if an Android user does not have the app installed. Please input a web url here.</p></div></td>
-      </tr>
-		</table>
-		<br/>
 	</section>
+		<br/>
+		<!-- Deep linking parameters table -->
+	<div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Optional Fields (for alternative tracking and link behavior)</a>
+        </h4>
+      </div>
+      <div id="collapse3" class="panel-collapse collapse">
+        <div class="panel-body">
+	        <label style="margin-right: 10px">~Channel (Branch specific tag)</label>
+	        <input class="form-control" style="width:200px;margin-bottom: 15px;" id="channelTag" type="text"/>
 
+            <input type="checkbox" name="webonly" id="webOnlyCheckBox"/>
+            <label style="margin-left: 5px">Web Only</label>
+        </div>
+      </div>
+    </div>
+  </div> 
 	<section>
 		<br>
 		<br>
@@ -154,10 +196,10 @@ TO DO
 		<br>
 		<br>
 	</section>
-
 	<section class="container toggle" id="linkOutput">
 		<h3>Generated Email Link
-		<button class="btn" id="copy-button" style="background-color:#d3d3d3; display:inline;" data-clipboard-target="#generated3PLink">Copy Link</button>
+		<button class="btn" id="copyBtn" style="background-color:#d3d3d3; display:inline;" onclick="copyFields()">Copy Link</button>
+		<button class="btn" id="clrBtn" onclick="clearFields()" style="background-color:#d3d3d3; display:inline;" data-clipboard-target="#generated3PLink">Clear Fields</button>
 		</h3>
 		<textarea class="form-control" style="height:100px; margin-bottom:5%;" id="generated3PLink" type="text"></textarea>
 	</section>
